@@ -22,8 +22,8 @@
     <label>Email</label>
     <input type="text" name="email" value="${user.email}"> <br>
     <label>Admin</label>
-    <input type="radio" name="admin" value="true" value="${user.admin == 'true' ? 'checked':''}"> Quan Ly
-    <input type="radio" name="admin" value="false" value="${user.admin == 'false' ? 'checked':''}">Nhan Vien
+    <input type="radio" name="admin" value="true" ${user.admin == 'true' ? 'checked':''}> Quan Ly
+    <input type="radio" name="admin" value="false" ${user.admin == 'false' ? 'checked':''}>Nhan Vien
     <br>
     <button type="submit">Add</button>
 </form>
