@@ -25,26 +25,26 @@ public class HomeServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String uri = request.getRequestURI();
-        if (uri.contains("/home")) {
-            ArrayList<SanPhamDto> list = sanPhamRepo.getList();
-            request.setAttribute("list", list);
-            request.getRequestDispatcher("/home.jsp").forward(request, response);
-        } else if (uri.contains("/user")) {
-            List<Users> list = userRepo.getList();
-            request.setAttribute("list", list);
-            request.getRequestDispatcher("/user.jsp").forward(request, response);
-        } else if (uri.contains("/detail")) {
-            Users user = userRepo.getDetailById(request.getParameter("id"));
-            request.setAttribute("user", user);
-            request.getRequestDispatcher("/detail.jsp").forward(request, response);
-        } else if (uri.contains("/delete")) {
-            Users user = userRepo.getDetailById(request.getParameter("id"));
-            if (user != null) {
-                userRepo.delete(user);
-            }
-            response.sendRedirect("/user");
-        }
+//        String uri = request.getRequestURI();
+//        if (uri.contains("/home")) {
+//            ArrayList<SanPhamDto> list = sanPhamRepo.getList();
+//            request.setAttribute("list", list);
+//            request.getRequestDispatcher("/home.jsp").forward(request, response);
+//        } else if (uri.contains("/user")) {
+//            List<Users> list = userRepo.getList();
+//            request.setAttribute("list", list);
+//            request.getRequestDispatcher("/user.jsp").forward(request, response);
+//        } else if (uri.contains("/detail")) {
+//            Users user = userRepo.getDetailById(request.getParameter("id"));
+//            request.setAttribute("user", user);
+//            request.getRequestDispatcher("/detail.jsp").forward(request, response);
+//        } else if (uri.contains("/delete")) {
+//            Users user = userRepo.getDetailById(request.getParameter("id"));
+//            if (user != null) {
+//                userRepo.delete(user);
+//            }
+//            response.sendRedirect("/user");
+//        }
 
 
     }
