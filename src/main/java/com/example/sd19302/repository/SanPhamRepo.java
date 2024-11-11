@@ -2,16 +2,11 @@ package com.example.sd19302.repository;
 
 import com.example.sd19302.dto.SanPhamDto;
 import com.example.sd19302.model.SanPham;
-import com.example.sd19302.model.Users;
-import com.example.sd19302.ultis.DbConnection;
 import com.example.sd19302.ultis.HibernateUtils;
 import jakarta.persistence.Query;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.util.ArrayList;
 import java.util.List;
 
 public class SanPhamRepo {
@@ -37,6 +32,14 @@ public class SanPhamRepo {
         List<SanPhamDto> list = query.getResultList();
         session.close();
         return list;
+    }
+
+    public void addNew(SanPham sanPham) {
+        Session session = HibernateUtils.getFACTORY().openSession();
+        Transaction transaction = session.beginTransaction();
+        session.saveOrUpdate(sanPham);
+        transaction.commit();
+        session.close();
     }
 
 }

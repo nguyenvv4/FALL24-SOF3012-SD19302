@@ -13,6 +13,26 @@
     <title>Title</title>
 </head>
 <body>
+<form action="/san-pham/add" method="post">
+    <label>ma san pham</label>
+    <input type="text" name="maSanPham"> <br>
+    <label>ten san pham</label>
+    <input type="text" name="tenSanPham"> <br>
+    <label>tran thai</label>
+    <input type="radio" name="trangThai" value="Active">Active
+    <input type="radio" name="trangThai" value="InActive">InActive<br>
+    <label>Danh muc</label>
+    <select name="danhMuc" id="">
+        <c:forEach items="${listDanhMuc}" var="d">
+            <option value="${d.id}">${d.tenDanhMuc}</option>
+        </c:forEach>
+    </select>
+    <br>
+    <button type="submit">Add</button>
+
+
+</form>
+
 <h1>Su dung entity relationships</h1>
 <table class="table table-striped">
     <thead>

@@ -64,3 +64,51 @@ INSERT INTO san_pham (ma_san_pham, ten_san_pham, trang_thai, ngay_tao, id_danh_m
 ('SP_018', 'San Pham 18', 'out of stock', '2024-09-20', 9),
 ('SP_019', 'San Pham 19', 'available', '2024-10-15', 10),
 ('SP_020', 'San Pham 20', 'out of stock', '2024-10-20', 10);
+
+CREATE TABLE java4.dbo.san_pham (
+	id int IDENTITY(1,1) NOT NULL,
+	ma_san_pham varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+	ten_san_pham varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+	trang_thai varchar(50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+	ngay_tao datetime NULL,
+	ngay_sua datetime NULL,
+	id_danh_muc int NULL,
+	CONSTRAINT PK__san_pham__3213E83F7AFEBDE1 PRIMARY KEY (id),
+	CONSTRAINT fk_san_pham_danh_muc FOREIGN KEY (id_danh_muc) REFERENCES java4.dbo.danh_muc(id) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+CREATE TABLE java4.dbo.ctsp (
+	id int IDENTITY(1,1) NOT NULL,
+	id_sp int NULL,
+	gia_ban decimal(18,2) NULL,
+	so_luong_ton int NULL,
+	trang_thai varchar(50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+	ngay_tao datetime NULL,
+	ngay_sua datetime NULL,
+	CONSTRAINT PK__ctsp__3213E83FA831EA41 PRIMARY KEY (id),
+	CONSTRAINT fk_sp FOREIGN KEY (id_sp) REFERENCES java4.dbo.san_pham(id) ON DELETE CASCADE ON UPDATE CASCADE
+);
+CREATE TABLE java4.dbo.hoa_don (
+	id int IDENTITY(1,1) NOT NULL,
+	trang_thai varchar(50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+	ngay_tao datetime NULL,
+	ngay_sua datetime NULL,
+	dia_chi nvarchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+	so_dien_thoai varchar(20) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+	CONSTRAINT PK__hoa_don__3213E83FFA73A1C9 PRIMARY KEY (id),
+);
+
+CREATE TABLE java4.dbo.hdct (
+	id int IDENTITY(1,1) NOT NULL,
+	id_hoa_don int NULL,
+	id_ctsp int NULL,
+	so_luong_mua int NULL,
+	gia_ban decimal(18,2) NULL,
+	tong_tien decimal(18,2) NULL,
+	trang_thai varchar(50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+	ngay_tao datetime NULL,
+	ngay_sua datetime NULL,
+	CONSTRAINT PK__hdct__3213E83FFDF5C5FD PRIMARY KEY (id),
+	CONSTRAINT fk_ctsp FOREIGN KEY (id_ctsp) REFERENCES java4.dbo.ctsp(id) ON DELETE CASCADE ON UPDATE CASCADE,
+	CONSTRAINT fk_hoa_don FOREIGN KEY (id_hoa_don) REFERENCES java4.dbo.hoa_don(id) ON DELETE CASCADE ON UPDATE CASCADE
+);
