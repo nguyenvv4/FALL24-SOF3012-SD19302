@@ -27,10 +27,10 @@ public class SanPhamServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String uri = request.getRequestURI();
         if (uri.contains("/san-pham/hien-thi")) {
-            List<SanPham> list = sanPhamRepo.getList();
-            request.setAttribute("list", list);
-//            List<SanPhamDto> listDto = sanPhamRepo.getListDto();
-//            request.setAttribute("listDto", listDto);
+//            List<SanPham> list = sanPhamRepo.getList();
+//            request.setAttribute("list", list);
+            List<SanPhamDto> listDto = sanPhamRepo.getListDto();
+            request.setAttribute("listDto", listDto);
             request.setAttribute("listDanhMuc", danhMucRepo.getList());
             request.getRequestDispatcher("/san-pham.jsp").forward(request, response);
         }
