@@ -11,6 +11,11 @@
 <html>
 <head>
     <title>Title</title>
+    <script>
+        function handlerCLick() {
+            console.log("xin chao ban")
+        }
+    </script>
 </head>
 <body>
 <form action="/san-pham/add" method="post">
@@ -29,9 +34,8 @@
     </select>
     <br>
     <button type="submit">Add</button>
-
-
 </form>
+<button onclick="handlerCLick()">Click me</button>
 
 <h1>Su dung entity relationships</h1>
 <table class="table table-striped">
@@ -92,4 +96,5 @@
     </tbody>
 </table>
 </body>
+
 </html>

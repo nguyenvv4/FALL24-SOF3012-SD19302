@@ -27,4 +27,15 @@ public class User1 {
     private String email;
     @Column(name = "Admin")
     private Boolean admin;
+
+    @Override
+    public String toString() {
+        return "User1{" +
+                "id=" + id +
+                ", password='" + password + '\'' +
+                ", fullname='" + fullname + '\'' +
+                ", email='" + email + '\'' +
+                ", admin=" + admin +
+                '}';
+    }
 }
