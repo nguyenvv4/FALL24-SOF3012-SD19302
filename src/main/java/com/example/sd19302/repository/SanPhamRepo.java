@@ -42,4 +42,20 @@ public class SanPhamRepo {
         session.close();
     }
 
+    public SanPham getDetail(Integer id) {
+        Session session = HibernateUtils.getFACTORY().openSession();
+        Query query = session.createQuery("SELECT sp From SanPham sp where sp.id = :idSp");
+        query.setParameter("idSp", id);
+        SanPham sanPham = (SanPham) query.getSingleResult();
+        session.close();
+        return sanPham;
+    }
+
+    public void delete(SanPham sanPham) {
+        Session session = HibernateUtils.getFACTORY().openSession();
+        Transaction transaction = session.beginTransaction();
+        session.delete(sanPham);
+        transaction.commit();
+        session.close();
+    }
 }

@@ -54,10 +54,10 @@
             <td>${sp.trangThai}</td>
             <td>${sp.danhMuc.tenDanhMuc}</td>
             <td>${sp.ngayTao}</td>
-                <%--            <td>--%>
-                <%--                <a href="/detail?id=${user.id}">detail</a>--%>
-                <%--                <a href="/delete?id=${user.id}">delete</a>--%>
-                <%--            </td>--%>
+            <td>
+                <a href="/san-pham/detail?id=${sp.id}">detail</a>
+                <a href="/san-pham/delete?id=${sp.id}">delete</a>
+            </td>
         </tr>
     </c:forEach>
     </tbody>
