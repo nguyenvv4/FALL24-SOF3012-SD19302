@@ -14,19 +14,14 @@
     <script>
         function handlerClick() {
             $.ajax({
-                    url: "http://localhost:8082/api/test-ajax",
-                    async: false,
-                    crossDomain: true,
-                    type: "GET",
-                    contentType: "application/json; charset=utf-8",
-                    datatype: "jsonp",
-
+                    url: "/api/test-ajax",
+                    contentType: "application/json",
                     success: function (response) {
                         console.log(response)
+                        // html.inner
                     },
                 }
             )
-
         }
     </script>
 </head>

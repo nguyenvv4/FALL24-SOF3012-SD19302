@@ -13,16 +13,16 @@ import java.io.PrintWriter;
 public class AjaxServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("/demoAjax.jsp").forward(request, response);
         User1 user = new User1(1, "123456", "Nguyen Van A", "A@gmail.com", true);
-        response.setCharacterEncoding("utf-8");
-        response.setContentType("application/json");
         Gson gson = new Gson();
-        String json = gson.toJson(user);
-//        response.getWriter().print(json);
+        String jsonResponse = gson.toJson(user);
+
+        // Đặt kiểu dữ liệu trả về là JSON
+        response.setContentType("application/json");
         PrintWriter out = response.getWriter();
+
         // Gửi dữ liệu JSON về client
-        out.print(json);
+        out.print(jsonResponse);
         out.flush();
     }
 
