@@ -21,7 +21,7 @@
                     contentType: "application/json",
                     success: function (response) {
                         console.log(response)
-                        // html.inner
+                        document.getElementById("sanPham").innerHTML = "id: " + response.id + "ten san pham: " + response.tenSanPham
                     }
                 }
             )
@@ -78,6 +78,7 @@
     </c:forEach>
     </tbody>
 </table>
+<h1 id="sanPham"></h1>
 <h1>Su dung Dto</h1>
 <table class="table table-striped">
     <thead>
