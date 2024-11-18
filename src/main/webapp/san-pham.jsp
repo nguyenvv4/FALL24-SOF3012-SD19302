@@ -11,9 +11,20 @@
 <html>
 <head>
     <title>Title</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
     <script>
-        function handlerCLick() {
-            console.log("xin chao ban")
+        function handlerCLick(id) {
+            console.log(id);
+            $.ajax({
+                    url: "/api/test-ajax?id=" + id,
+                    contentType: "application/json",
+                    success: function (response) {
+                        console.log(response)
+                        // html.inner
+                    }
+                }
+            )
         }
     </script>
 </head>
@@ -35,7 +46,7 @@
     <br>
     <button type="submit">Add</button>
 </form>
-<button onclick="handlerCLick()">Click me</button>
+
 
 <h1>Su dung entity relationships</h1>
 <table class="table table-striped">
@@ -61,6 +72,7 @@
             <td>
                 <a href="/san-pham/detail?id=${sp.id}">detail</a>
                 <a href="/san-pham/delete?id=${sp.id}">delete</a>
+                <button onclick="handlerCLick(${sp.id})">Click me</button>
             </td>
         </tr>
     </c:forEach>

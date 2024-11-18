@@ -1,6 +1,8 @@
 package com.example.sd19302.servlet;
 
+import com.example.sd19302.model.SanPham;
 import com.example.sd19302.model.User1;
+import com.example.sd19302.repository.SanPhamRepo;
 import com.google.gson.Gson;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
@@ -11,11 +13,14 @@ import java.io.PrintWriter;
 
 @WebServlet(name = "AjaxServlet", value = "/api/test-ajax")
 public class AjaxServlet extends HttpServlet {
+
+    SanPhamRepo sanPhamRepo = new SanPhamRepo();
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        User1 user = new User1(1, "123456", "Nguyen Van A", "A@gmail.com", true);
+        SanPham sanPham = sanPhamRepo.getDetail(Integer.parseInt(request.getParameter("id")));
         Gson gson = new Gson();
-        String jsonResponse = gson.toJson(user);
+        String jsonResponse = gson.toJson(sanPham);
 
         // Đặt kiểu dữ liệu trả về là JSON
         response.setContentType("application/json");
