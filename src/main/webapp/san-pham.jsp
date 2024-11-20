@@ -22,6 +22,7 @@
                     success: function (response) {
                         console.log(response)
                         document.getElementById("sanPham").innerHTML = "id: " + response.id + "ten san pham: " + response.tenSanPham
+                        document.getElementById("maSanPham").value = response.maSanPham
                     }
                 }
             )
@@ -31,7 +32,7 @@
 <body>
 <form action="/san-pham/add" method="post">
     <label>ma san pham</label>
-    <input type="text" name="maSanPham"> <br>
+    <input type="text" name="maSanPham" id="maSanPham"> <br>
     <label>ten san pham</label>
     <input type="text" name="tenSanPham"> <br>
     <label>tran thai</label>

@@ -19,7 +19,7 @@ public class UserRepo {
         return list;
     }
 
-    public void add(Users user){
+    public void add(Users user) {
         Session session = HibernateUtils.getFACTORY().openSession();
         Transaction transaction = session.beginTransaction();
         session.save(user);
@@ -36,7 +36,22 @@ public class UserRepo {
         return user;
     }
 
-    public void delete(Users user){
+    public Users getDetailByEmail(String email) {
+        Users user = new Users();
+        try {
+            Session session = HibernateUtils.getFACTORY().openSession();
+            Query query = session.createQuery("SELECT u From Users u where u.email = :email");
+            query.setParameter("email", email);
+            user = (Users) query.getSingleResult();
+            session.close();
+            return user;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return user;
+        }
+    }
+
+    public void delete(Users user) {
         Session session = HibernateUtils.getFACTORY().openSession();
         Transaction transaction = session.beginTransaction();
         session.delete(user);
