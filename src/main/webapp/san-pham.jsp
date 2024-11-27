@@ -48,7 +48,7 @@
     <button type="submit">Add</button>
 </form>
 
-
+<a href="/logout">Logout</a>
 <h1>Su dung entity relationships</h1>
 <table class="table table-striped">
     <thead>

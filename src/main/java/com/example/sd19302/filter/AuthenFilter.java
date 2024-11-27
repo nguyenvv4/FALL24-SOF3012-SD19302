@@ -25,7 +25,11 @@ public class AuthenFilter implements Filter {
         String uri = req.getRequestURI();
         HttpSession session = req.getSession();
         Users user = (Users) session.getAttribute("user");
+        if (user == null){
+            req.getRequestDispatcher("/login.jsp").forward(req, res);
+        }
         Boolean isAdmin = user.getAdmin();
+
         if (isAdmin == true) {
             chain.doFilter(request, response);
         } else {

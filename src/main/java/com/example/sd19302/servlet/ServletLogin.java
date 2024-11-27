@@ -8,14 +8,23 @@ import jakarta.servlet.annotation.*;
 
 import java.io.IOException;
 
-@WebServlet(name = "ServletLogin", value = "/login")
+@WebServlet(name = "ServletLogin", value = {"/login",
+        "/logout"
+})
 public class ServletLogin extends HttpServlet {
 
     UserRepo userRepo = new UserRepo();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("/login.jsp").forward(request, response);
+        String uri = request.getRequestURI();
+        if (uri.contains("/login")) {
+            request.getRequestDispatcher("/login.jsp").forward(request, response);
+        } else if (uri.contains("/logout")) {
+            HttpSession session = request.getSession();
+            session.invalidate();
+            response.sendRedirect("/login");
+        }
     }
 
     @Override
